@@ -21,3 +21,8 @@ export const updateOrganizationSchema = createOrganizationSchema
 
 export type CreateOrganizationInput = z.infer<typeof createOrganizationSchema>;
 export type UpdateOrganizationInput = z.infer<typeof updateOrganizationSchema>;
+
+export const addOrganizationMemberSchema = z.object({
+  email: z.string().trim().email().max(320).transform((value) => value.toLowerCase()),
+  role: z.enum(["super_admin", "space_admin", "member"]).default("member"),
+});

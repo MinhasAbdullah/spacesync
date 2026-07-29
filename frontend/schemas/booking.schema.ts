@@ -79,7 +79,6 @@ export const bookingListQuerySchema = paginationSchema
     mine: optionalBooleanQuerySchema,
     from: isoDateTimeSchema.optional(),
     to: isoDateTimeSchema.optional(),
-    series_id: uuidSchema.optional(),
   })
   .superRefine((value, context) => {
     if ((value.from && !value.to) || (!value.from && value.to)) {
