@@ -1,26 +1,156 @@
+/* =========================================================
+   SpaceSync — Global Styles
+   ========================================================= */
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Base dark palette */
+  --ss-bg-base: #050b18;
+  --ss-bg-surface: #0d1526;
+  --ss-bg-elevated: #121e35;
+  --ss-bg-overlay: #1a2a45;
+  --ss-border: #1e2f50;
+  --ss-border-subtle: #162038;
+  --ss-cyan: #00d4ff;
+  --ss-cyan-dim: rgba(0, 212, 255, 0.15);
+  --ss-cyan-glow: rgba(0, 212, 255, 0.30);
+  --ss-teal: #00e5b0;
+  --ss-text-primary: #e8edf8;
+  --ss-text-secondary: #8b9cc8;
+  --ss-text-muted: #4e6080;
+  --ss-success: #10b981;
+  --ss-warning: #f59e0b;
+  --ss-danger: #ef4444;
+  --ss-info: #3b82f6;
+
+  /* shadcn/ui CSS Variables */
+  --background: 216 71% 6%;
+  --foreground: 220 30% 92%;
+  --card: 218 53% 11%;
+  --card-foreground: 220 30% 92%;
+  --popover: 218 53% 10%;
+  --popover-foreground: 220 30% 92%;
+  --primary: 192 100% 50%;
+  --primary-foreground: 220 50% 5%;
+  --secondary: 218 40% 17%;
+  --secondary-foreground: 220 30% 92%;
+  --muted: 218 40% 14%;
+  --muted-foreground: 220 20% 55%;
+  --accent: 192 100% 50%;
+  --accent-foreground: 220 50% 5%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 218 40% 19%;
+  --input: 218 40% 15%;
+  --ring: 192 100% 50%;
+  --radius: 0.625rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* Use @layer for Tailwind v4 compatibility */
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--ss-bg-base);
+    color: var(--ss-text-primary);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
+::-webkit-scrollbar-track {
+  background: var(--ss-bg-surface);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ss-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ss-cyan-dim);
+}
+
+/* SpaceSync Utility Classes */
+.ss-glow-border {
+  border-color: var(--ss-cyan);
+  box-shadow: 0 0 0 1px var(--ss-cyan-glow), 0 0 12px var(--ss-cyan-dim);
+}
+
+.ss-text-glow {
+  color: var(--ss-cyan);
+  text-shadow: 0 0 10px var(--ss-cyan-glow);
+}
+
+.ss-stat-card {
+  background: linear-gradient(135deg, var(--ss-bg-elevated) 0%, rgba(0, 212, 255, 0.04) 100%);
+  border: 1px solid var(--ss-border);
+}
+
+.ss-nav-active {
+  background: var(--ss-cyan-dim);
+  border-left: 2px solid var(--ss-cyan);
+  color: var(--ss-cyan);
+}
+
+.ss-nav-hover:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--ss-text-primary);
+}
+
+.ss-badge-available {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+.ss-badge-booked {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+.ss-badge-pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+.ss-badge-conflict {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.heatmap-0 { background: rgba(0, 212, 255, 0.05); }
+.heatmap-1 { background: rgba(0, 212, 255, 0.15); }
+.heatmap-2 { background: rgba(0, 212, 255, 0.30); }
+.heatmap-3 { background: rgba(0, 212, 255, 0.50); }
+.heatmap-4 { background: rgba(0, 212, 255, 0.75); }
+.heatmap-5 { background: rgba(0, 212, 255, 1.00); }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.4); }
+}
+
+@keyframes slide-in-left {
+  from { opacity: 0; transform: translateX(-16px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-pulse-dot { animation: pulse-dot 1.5s ease-in-out infinite; }
+.animate-slide-left { animation: slide-in-left 0.3s ease-out both; }
+.animate-fade-up { animation: fade-up 0.4s ease-out both; }
