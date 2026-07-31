@@ -2,6 +2,7 @@
 import type { NextPage } from 'next';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { supabase } from '@/lib/supabase';
 import '../auth.css'; // <-- Importing the extracted CSS here
 
 const LoginPage: NextPage = () => {
@@ -16,16 +17,22 @@ const LoginPage: NextPage = () => {
     // Simulate authentication delay
     setTimeout(() => {
       setIsLoading(false);
-      router.push('/my-bookings');
+      router.push('/bookings');
     }, 1000);
   };
 
-  const handleGoogleLogin = () => {
+  const handleGoogleLogin = async () => {
     setIsLoading(true);
-    setTimeout(() => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/bookings`,
+      },
+    });
+    if (error) {
+      console.error(error);
       setIsLoading(false);
-      router.push('/my-bookings');
-    }, 800);
+    }
   };
 
   return (

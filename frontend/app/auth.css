@@ -250,22 +250,24 @@ svg.orbit-glyph {
 
 .google-button {
   width: 100%;
-  padding: 14px 0;
-  background-color: rgba(26, 32, 40, 0.6);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  color: var(--primary-text-color);
-  font-size: 0.95rem;
-  font-weight: 400;
+  padding: 12px 0;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 50px;
+  color: #000000;
+  font-size: 1.05rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .google-button:hover {
-  background-color: rgba(26, 32, 40, 0.9);
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .signup-link {
