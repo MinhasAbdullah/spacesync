@@ -241,5 +241,5 @@ Built as part of the **Zeppelin Web Development Fellowship 2026**.
 ---
 
 <p align="center">
-  Built with ❤️ by Group M2 — Teerop Web Development Fellowship 2026
+  Built with ❤️ by Group M2 — Zeppelin Web Development Fellowship 2026
 </p>
