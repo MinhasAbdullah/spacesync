@@ -47,13 +47,11 @@ export async function requireAuth(): Promise<AuthContext> {
           typeof user.user_metadata?.avatar_url === "string"
             ? user.user_metadata.avatar_url
             : null,
+        role: "member",
       })
       .select("*")
       .single();
     throwIfDatabaseError(createError);
-    if (!created) {
-    throw new Error("Failed to create user profile.");
-  }
     return { user, profile: created, admin };
   }
 

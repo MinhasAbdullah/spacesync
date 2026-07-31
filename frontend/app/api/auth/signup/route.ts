@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       password: input.password,
       options: {
         data: { full_name: input.full_name },
-        emailRedirectTo: `${origin}/auth/confirm?next=/api-test`,
+        emailRedirectTo: `${origin}/auth/confirm?next=/dashboard`,
       },
     });
     if (error) throw error;

@@ -41,9 +41,7 @@ export async function POST(request: Request) {
       .select("*")
       .single();
     throwIfDatabaseError(error);
-  if (!organization) {
-    throw new Error("Failed to create organization.");
-  }
+
     const { error: profileError } = await admin
       .from("profiles")
       .update({ org_id: organization.id, role: "super_admin" })
