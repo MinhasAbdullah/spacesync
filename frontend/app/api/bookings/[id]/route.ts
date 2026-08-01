@@ -91,7 +91,7 @@ export async function DELETE(
         type: "booking_cancelled",
       });
     }
-    return jsonMessage(`Booking ${data.id} cancelled.`);
+    return jsonMessage(`Booking ${data?.id} cancelled.`);
   } catch (error) {
     return handleRouteError(error);
   }

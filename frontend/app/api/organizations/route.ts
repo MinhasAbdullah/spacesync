@@ -41,6 +41,13 @@ export async function POST(request: Request) {
       .select("*")
       .single();
     throwIfDatabaseError(error);
+    if (!organization) {
+      throw new ApiError(
+        500,
+        "ORGANIZATION_CREATION_FAILED",
+        "Failed to create organization.",
+      );
+    }
 
     const { error: profileError } = await admin
       .from("profiles")
