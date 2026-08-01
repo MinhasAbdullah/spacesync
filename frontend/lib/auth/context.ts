@@ -52,6 +52,9 @@ export async function requireAuth(): Promise<AuthContext> {
       .select("*")
       .single();
     throwIfDatabaseError(createError);
+    if (!created) {
+      throw new ApiError(500, "INTERNAL_ERROR", "Failed to create profile.");
+    }
     return { user, profile: created, admin };
   }
 

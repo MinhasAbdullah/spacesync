@@ -142,6 +142,10 @@ export async function POST(request: Request) {
       .single();
     throwIfDatabaseError(error);
 
+    if (!data) {
+      throw new ApiError(500, "BOOKING_INSERT_FAILED", "Booking creation failed.");
+    }
+
     if (status === "pending") {
       await logAdminNotifications(context.admin, {
         org_id: context.profile.org_id,
