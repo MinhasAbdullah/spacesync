@@ -10,7 +10,7 @@ A full-stack resource booking platform that eliminates double-bookings, enforces
 
 | Service | URL |
 |---------|-----|
-| 🌍 Frontend | *Vercel deployment URL* |
+| 🌍 Frontend | https://spacesync-nq7m.vercel.app/ |
 | 📁 GitHub Repo | [github.com/MinhasAbdullah/spacesync](https://github.com/MinhasAbdullah/spacesync) |
 
 ---
